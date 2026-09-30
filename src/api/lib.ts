@@ -4,6 +4,15 @@ import { Goal, Transaction, User } from './types'
 
 export const API_ROOT = 'https://fencer-commbank.azurewebsites.net'
 
+export async function updateGoal(goalId: string, updatedGoal: Goal): Promise<boolean> {
+  try {
+    await axios.put(`${API_ROOT}/api/Goal/${goalId}`, updatedGoal)
+    return true
+  } catch (error: any) {
+    return false
+  }
+}
+
 export async function getUser(): Promise<User | null> {
   try {
     const response = await axios.get(`${API_ROOT}/api/User/${user.id}`)
@@ -43,11 +52,11 @@ export async function createGoal(): Promise<Goal | null> {
   }
 }
 
-export async function updateGoal(goalId: string, updatedGoal: Goal): Promise<boolean> {
-  try {
-    await axios.put(`${API_ROOT}/api/Goal/${goalId}`, updatedGoal)
-    return true
-  } catch (error: any) {
-    return false
-  }
-}
+// export async function updateGoal(goalId: string, updatedGoal: Goal): Promise<boolean> {
+//   try {
+//     await axios.put(`${API_ROOT}/api/Goal/${goalId}`, updatedGoal)
+//     return true
+//   } catch (error: any) {
+//     return false
+//   }
+// }
